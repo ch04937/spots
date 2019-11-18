@@ -7,14 +7,11 @@ const NavBar = () => {
     return (
         <div className = "NavBar-container">            
             <div className="NavBar-links">
+                <Link to='/chat' >
+                    <p>Chat</p>
+                </Link>
                 <Link to= '/'>
                     <p>Home</p>
-                </Link>
-                <Link to= '/plan-it'>
-                    <p>Plan It!</p>
-                </Link>
-                <Link to= '/find'>
-                    <p>Find</p>
                 </Link>
                 <Link to = '/profile'>
                     <p>Settings/Profile</p>
