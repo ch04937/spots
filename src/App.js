@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import NavBar from "./pages/NavBar.js/index.js";
+import NavBar from "./pages/NavBar.js";
 import HomePage from "./pages/HomePage.js";
 import Profile from "./pages/Profile.js";
-import Login from "./components/Login";
+import Login from "./components/Login.js";
 import RegisterForm from "./components/RegisterForm.js";
-import Footer from "./pages/footer.js/index.js";
-import Chat from "./pages/Chat.js/index.js.js.js.js";
+import Footer from "./pages/footer.js";
+import Chat from "./pages/Chat.js";
 
 import "./App.css";
 
