@@ -1,7 +1,7 @@
 import React from "react";
 
 //adding components
-import SideMenu from "../components/SideMenu";
+import SideMenu from "./SideMenu";
 
 export default function Chat() {
 	return (
