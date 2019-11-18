@@ -2,12 +2,12 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar.js";
-import HomePage from "./components/HomePage.js";
-import Profile from "./components/Profile.js";
-import Login from "./components/Login";
-import RegisterForm from "./components/RegisterForm.js";
+import HomePage from "./pages/HomePage.js";
+import Profile from "./pages/Profile.js";
+import Login from "./pages/Login";
+import RegisterForm from "./pages/RegisterForm.js";
 import Footer from "./components/footer.js";
-import Chat from "./components/Chat.js";
+import Chat from "./components/Chat.js/index.js.js.js";
 
 import "./App.css";
 
