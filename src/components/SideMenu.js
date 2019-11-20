@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
+import axios from "axios";
 import SideNav, {
 	// Toggle,
 	// Nav,
@@ -13,7 +14,25 @@ import MessageList from "./MessagesList";
 //setting styles
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import "./side-menu.css";
-export default function SideMenu() {
+
+export default function SideMenu(props) {
+	const [room, setRoom] = useState([]);
+	useEffect(() => {
+		const fetchRoom = async () => {
+			try {
+				const id = props.props.match.params.id;
+
+				const res = await axios.get(
+					`http://localhost:3300/users/${id}/room`
+				);
+				setRoom(res.data.room);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+		fetchRoom();
+	}, []);
+
 	return (
 		<div className="side-menu">
 			<Route
@@ -28,17 +47,16 @@ export default function SideMenu() {
 							}}
 						>
 							<SideNav.Toggle />
-							<SideNav.Nav defaultSelected="chathome">
-								<NavItem eventKey="chathome">
-									<NavIcon>
-										<i
-											className="fa fa--fw fa-home"
-											style={{ fontSize: ".5rem" }}
-										/>
-									</NavIcon>
-									<NavText>Home</NavText>
-								</NavItem>
-							</SideNav.Nav>
+							{room.length > 0 &&
+								room.map((room) => (
+									<div className="chat-room" key={room.id}>
+										<SideNav.Nav>
+											<NavItem eventKey={room.id}>
+												<NavText>{room.name}</NavText>
+											</NavItem>
+										</SideNav.Nav>
+									</div>
+								))}
 						</SideNav>
 						<Route
 							path="/"

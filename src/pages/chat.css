@@ -2,6 +2,7 @@
 	border: 3px solid red;
 	display: flex;
 	flex-direction: row;
+	height: auto;
 }
 .chat-menu {
 	border: 1px dashed yellow;
@@ -12,6 +13,7 @@
 	border: 1px dashed blue;
 	width: 440px;
 	margin-left: 62px;
+	height: auto;
 }
 .menu-bar {
 	/* width: 30px; */

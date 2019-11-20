@@ -12,7 +12,7 @@ function Chat(props) {
 	return (
 		<div className="chat-container">
 			<div className="chat-menu">
-				<SideMenu />
+				<SideMenu props={props} />
 			</div>
 			<div className="chat-body">
 				<MessagesList props={props} />

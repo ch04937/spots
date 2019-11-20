@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage.js";
 import Profile from "./pages/Profile.js";
 import Login from "./components/Login.js";
 import RegisterForm from "./components/RegisterForm.js";
-import Footer from "./pages/footer.js";
+// import Footer from "./pages/footer.js";
 import Chat from "./pages/Chat.js";
 
 import "./App.css";
@@ -20,7 +20,7 @@ function App() {
 			<Route path="/login" component={Login} />
 			<Route path="/register" component={RegisterForm} />
 			<NavBar />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }

@@ -9,18 +9,28 @@ export default function MessagesList(props) {
 	useEffect(() => {
 		const fetchRoom = async () => {
 			try {
-				const id = props.match.params.id;
+				const id = props.props.match.params.id;
 
 				const res = await axios.get(
 					`http://localhost:3300/users/${id}/room`
 				);
-				console.log(res.data);
-				// setMessage(res.data.room);
+				setMessage(res.data.room);
 			} catch (e) {
 				console.log(e);
 			}
 		};
 		fetchRoom();
 	}, []);
-	return <div className="message-list">MessagesList</div>;
+	return (
+		<div className="message-list">
+			{message.length > 0 &&
+				message.map((chat) => (
+					<div className="messages" key={chat.id}>
+						<p>
+							{chat.username} said he is in room {chat.name}
+						</p>
+					</div>
+				))}
+		</div>
+	);
 }
