@@ -1,5 +1,20 @@
-.chat {
+.chat-container {
 	border: 3px solid red;
+	display: flex;
+	flex-direction: row;
+}
+.chat-menu {
+	border: 1px dashed yellow;
+	position: relative;
+	text-align: left;
+}
+.chat-body {
+	border: 1px dashed blue;
+	width: 440px;
+	margin-left: 62px;
+}
+.menu-bar {
+	/* width: 30px; */
 }
 .title {
 	border: 1px solid green;

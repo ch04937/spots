@@ -14,10 +14,10 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
-			<Route path="/chat" component={Chat} />
+			<Route path="/chat/:id" component={Chat} />
 			<Route exact path="/" component={HomePage} />
 			<Route path="/profile" component={Profile} />
-			<Route path="/Login" component={Login} />
+			<Route path="/login" component={Login} />
 			<Route path="/register" component={RegisterForm} />
 			<NavBar />
 			<Footer />

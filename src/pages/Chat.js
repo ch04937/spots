@@ -1,21 +1,24 @@
 import React from "react";
 
 //adding components
-import SideMenu from "./SideMenu";
-import MessagesList from "./MessagesList";
+import SideMenu from "../components/SideMenu";
+import MessagesList from "../components/MessagesList";
 import SendMessageForm from "../components/SendMessageForm";
 
 //setting styles
 import "./chat.css";
 
-export default function Chat(props) {
+function Chat(props) {
 	return (
-		<div className="chat">
-			<SideMenu />
-			<h2 className="title">title</h2>
-			<MessagesList props={props} />
-			<SendMessageForm />
-			<p>Here is where we will chat</p>
+		<div className="chat-container">
+			<div className="chat-menu">
+				<SideMenu />
+			</div>
+			<div className="chat-body">
+				<MessagesList props={props} />
+				<SendMessageForm />
+			</div>
 		</div>
 	);
 }
+export default Chat;
