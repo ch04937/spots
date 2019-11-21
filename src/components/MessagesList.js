@@ -5,14 +5,14 @@ import axios from "axios";
 import "./messagelist.css";
 
 export default function MessagesList(props) {
+	console.log(props);
 	const [message, setMessage] = useState([]);
 	useEffect(() => {
 		const fetchRoom = async () => {
 			try {
-				const id = props.props.match.params.id;
-
+				const id = props.match.params.id;
 				const res = await axios.get(
-					`http://localhost:3300/users/${id}/room`
+					`http://localhost:3300/message/${id}`
 				);
 				setMessage(res.data.room);
 			} catch (e) {
@@ -23,14 +23,13 @@ export default function MessagesList(props) {
 	}, []);
 	return (
 		<div className="message-list">
-			{message.length > 0 &&
-				message.map((chat) => (
-					<div className="messages" key={chat.id}>
-						<p>
-							{chat.username} said he is in room {chat.name}
-						</p>
-					</div>
-				))}
+			{message.map((chat) => (
+				<div className="messages" key={chat.id}>
+					<p>
+						{chat.username} said he is in room {chat.name}
+					</p>
+				</div>
+			))}
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import NavBar from "./pages/NavBar.js";
 import HomePage from "./pages/HomePage.js";
@@ -14,13 +14,15 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
-			<Route path="/chat/:id" component={Chat} />
-			<Route exact path="/" component={HomePage} />
-			<Route path="/profile" component={Profile} />
-			<Route path="/login" component={Login} />
-			<Route path="/register" component={RegisterForm} />
+			<Switch>
+				<Route path="/chat/:id" component={Chat} />
+				<Route exact path="/" component={HomePage} />
+				<Route path="/profile" component={Profile} />
+				<Route path="/login" component={Login} />
+				<Route path="/register" component={RegisterForm} />
+				{/* <Footer /> */}
+			</Switch>
 			<NavBar />
-			{/* <Footer /> */}
 		</div>
 	);
 }
