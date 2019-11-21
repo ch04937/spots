@@ -1,8 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
+//state
+import { AppState } from "./";
+
+//all components
 import NavBar from "./pages/NavBar.js";
-import HomePage from "./pages/HomePage.js";
+import Landing from "./pages/HomePage.js";
 import Profile from "./pages/Profile.js";
 import Login from "./components/Login.js";
 import RegisterForm from "./components/RegisterForm.js";
@@ -15,8 +19,8 @@ function App() {
 	return (
 		<div className="App">
 			<Switch>
+				<Route exact path="/" component={Landing} />
 				<Route path="/chat/:id" component={Chat} />
-				<Route exact path="/" component={HomePage} />
 				<Route path="/profile" component={Profile} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={RegisterForm} />
