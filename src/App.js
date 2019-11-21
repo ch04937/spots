@@ -20,7 +20,7 @@ function App() {
 		<div className="App">
 			<Switch>
 				<Route exact path="/" component={Landing} />
-				<Route path="/login" component={Login} />
+				<Route path="/sign-in" component={Login} />
 				<Route path="/register" component={RegisterForm} />
 				<HotspotState>
 					<Route path="/profile" component={Profile} />
