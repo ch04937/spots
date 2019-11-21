@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 //state
-import { AppState } from "./";
+import { HotspotState } from "./context/hotspotState";
 
 //all components
 import NavBar from "./pages/NavBar.js";
@@ -20,10 +20,12 @@ function App() {
 		<div className="App">
 			<Switch>
 				<Route exact path="/" component={Landing} />
-				<Route path="/chat/:id" component={Chat} />
-				<Route path="/profile" component={Profile} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={RegisterForm} />
+				<HotspotState>
+					<Route path="/profile" component={Profile} />
+					<Route path="/chat/:id" component={Chat} />
+				</HotspotState>
 				{/* <Footer /> */}
 			</Switch>
 			<NavBar />
