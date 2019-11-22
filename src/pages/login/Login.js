@@ -1,38 +1,22 @@
-// import ReactGA from "react-ga"
 import React, { useContext, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core";
 import LoginForm from "./LoginForm";
-import { AuthContext } from "../../context/";
+import { AuthContext } from "../../context/auth/authState";
 import { Formik } from "formik";
 import * as Yup from "yup";
 // import SignNavbar from "../../components/Navbar/signinnav"
 
-const useStyles = makeStyles(theme => ({
-	root: {
-		flexGrow: 1,
-	},
-	image: {
-		width: "100%",
-		height: "100%",
-	},
-}));
-
 const Login = ({ history }) => {
-	//   ReactGA.pageview(window.location.pathname + window.location.search)
 	const {
 		accessToken,
 		isLoading,
 		signInError,
 		signInWithUserIdAndPassword,
-		signInWithGoogle,
 	} = useContext(AuthContext);
-
-	const classes = useStyles();
 
 	useEffect(() => {
 		if (accessToken) {
-			history.push("/admin-dashboard");
+			history.push("/chat");
 		}
 	}, [accessToken]);
 
@@ -44,18 +28,13 @@ const Login = ({ history }) => {
 	});
 
 	return (
-		<div className={classes.root}>
-			{/* <SignNavbar /> */}
+		<div>
 			<Grid container>
 				<Grid item md={6} style={{ background: "#A35629" }}></Grid>
 				<Grid item md={6}>
 					<Formik
 						initialValues={{ userId: "", password: "" }}
 						onSubmit={(values, actions) => {
-							// ReactGA.event({
-							// 	category: "Sign In",
-							// 	action: "Existing User Signed In",
-							// });
 							signInWithUserIdAndPassword(values);
 							actions.resetForm();
 						}}
@@ -64,7 +43,6 @@ const Login = ({ history }) => {
 								{...formikProps}
 								isLoading={isLoading}
 								signInError={signInError}
-								signInWithGoogle={signInWithGoogle}
 							/>
 						)}
 						validationSchema={AdminLoginSchema}

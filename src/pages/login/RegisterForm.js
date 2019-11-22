@@ -1,20 +1,12 @@
-/* eslint-disable */
-
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-	Avatar,
 	Box,
 	Button,
 	CircularProgress,
 	Divider,
-	FormControl,
-	FormHelperText,
 	Grid,
-	InputLabel,
 	Link,
-	MenuItem,
-	Select,
 	TextField,
 	Typography,
 } from "@material-ui/core";
@@ -70,13 +62,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 const RegistrationForm = ({
-	values,
-	errors,
-	touched,
 	handleChange,
 	handleSubmit,
 	handleBlur,
-	signInWithGoogle,
 	isLoading,
 	signUpError,
 }) => {
@@ -100,9 +88,6 @@ const RegistrationForm = ({
 			>
 				<div className={classes.paper}>
 					<Typography component="h1" variant="h5">
-						Hot Spot
-					</Typography>
-					<Typography component="h1" variant="h5">
 						Sign Up
 					</Typography>
 					<form
@@ -120,20 +105,10 @@ const RegistrationForm = ({
 									required
 									fullWidth
 									id="firstName"
-									// value={values.firstName}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									label="First Name"
 									type="text"
-									// helperText={
-									// 	touched.firstName
-									// 		? errors.firstName
-									// 		: ""
-									// }
-									// error={
-									// 	touched.firstName &&
-									// 	Boolean(errors.firstName)
-									// }
 								/>
 							</Grid>
 							<Grid item xs={12} sm={6}>
@@ -143,20 +118,12 @@ const RegistrationForm = ({
 									required
 									fullWidth
 									id="lastName"
-									// value={values.lastName}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									label="Last Name"
 									name="lastName"
 									autoComplete="lastName"
 									type="text"
-									// helperText={
-									// 	touched.lastName ? errors.lastName : ""
-									// }
-									// error={
-									// 	touched.lastName &&
-									// 	Boolean(errors.lastName)
-									// }
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -166,18 +133,11 @@ const RegistrationForm = ({
 									required
 									fullWidth
 									id="email"
-									// value={values.email}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									label="Email Address"
 									name="email"
 									autoComplete="email"
-									// helperText={
-									// 	touched.email ? errors.email : ""
-									// }
-									// error={
-									// 	touched.email && Boolean(errors.email)
-									// }
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -190,17 +150,9 @@ const RegistrationForm = ({
 									label="Username"
 									type="text"
 									id="username"
-									// value={values.username}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									autoComplete="current-username"
-									// helperText={
-									// 	touched.username ? errors.username : ""
-									// }
-									// error={
-									// 	touched.username &&
-									// 	Boolean(errors.username)
-									// }
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -213,17 +165,9 @@ const RegistrationForm = ({
 									label="Password"
 									type="password"
 									id="password"
-									// value={values.password}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									autoComplete="current-password"
-									// helperText={
-									// 	touched.password ? errors.password : ""
-									// }
-									// error={
-									// 	touched.password &&
-									// 	Boolean(errors.password)
-									// }
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -236,19 +180,9 @@ const RegistrationForm = ({
 									label="Confirm Password"
 									type="password"
 									id="password-confirmation"
-									// value={values.passwordConfirmation}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									autoComplete="confirm-password"
-									// helperText={
-									// 	touched.passwordConfirmation
-									// 		? errors.passwordConfirmation
-									// 		: ""
-									// }
-									// error={
-									// 	touched.passwordConfirmation &&
-									// 	Boolean(errors.passwordConfirmation)
-									// }
 								/>
 							</Grid>
 						</Grid>

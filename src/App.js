@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 //state
 import { HotspotState } from "./context/hotspot/hotspotState";
+import { AuthState } from "./context/auth/authState";
 
 //all components
 import NavBar from "./pages/NavBar.js";
@@ -18,17 +19,19 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
-			<Switch>
-				<Route exact path="/" component={Landing} />
-				<Route path="/sign-in" component={Login} />
-				<Route path="/register" component={RegisterForm} />
-				<HotspotState>
-					<Route path="/profile" component={Profile} />
-					<Route path="/chat/:id" component={Chat} />
-				</HotspotState>
-				{/* <Footer /> */}
-			</Switch>
-			<NavBar />
+			<AuthState>
+				<Switch>
+					<Route exact path="/" component={Landing} />
+					<Route path="/sign-in" component={Login} />
+					<Route path="/register" component={RegisterForm} />
+					<HotspotState>
+						<Route path="/profile" component={Profile} />
+						<Route path="/chat" component={Chat} />
+						<NavBar />
+					</HotspotState>
+					{/* <Footer /> */}
+				</Switch>
+			</AuthState>
 		</div>
 	);
 }
