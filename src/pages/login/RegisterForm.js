@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from "react";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import {
 	Avatar,
@@ -98,7 +97,6 @@ const RegistrationForm = ({
 				direction="column"
 				alignItems="center"
 				justify="center"
-				style={{ minHeight: "100vh" }}
 			>
 				<div className={classes.paper}>
 					<Typography component="h1" variant="h5">

@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 //state
-import { HotspotState } from "./context/hotspotState";
+import { HotspotState } from "./context/hotspot/hotspotState";
 
 //all components
 import NavBar from "./pages/NavBar.js";
 import Landing from "./pages/HomePage.js";
 import Profile from "./pages/Profile.js";
-import Login from "./components/Login.js";
-import RegisterForm from "./components/RegisterForm.js";
+import Login from "./pages/login/Login";
+import RegisterForm from "./pages/login/RegisterForm";
 // import Footer from "./pages/footer.js";
 import Chat from "./pages/Chat.js";
 

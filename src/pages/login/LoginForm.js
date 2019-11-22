@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import {
-	Avatar,
 	Button,
 	CircularProgress,
 	Divider,
@@ -89,7 +88,6 @@ const SignInForm = ({
 				direction="column"
 				alignItems="center"
 				justify="center"
-				style={{ minHeight: "100vh" }}
 			>
 				<Grid item xs={12} className={classes.paper}>
 					<Typography component="h1" variant="h5">
@@ -142,7 +140,11 @@ const SignInForm = ({
 							</Grid>
 						</Grid>
 						<Button
-							style={{ background: "#F5945B", color: "#21242C" }}
+							style={{
+								background: "#b53737",
+								color: "#21242C",
+								hover: { background: "#8e1600" },
+							}}
 							type="submit"
 							fullWidth
 							variant="contained"

@@ -3,8 +3,8 @@ import React, { createContext, useEffect, useReducer } from "react";
 import { IS_LOADING } from "./types";
 
 import hotspot from "./hotspotReducer";
-import { clientWithAuth } from "../utils/api";
-import { loadState, saveState } from "../utils/localStorage";
+import { clientWithAuth } from "../../utils/api";
+import { loadState, saveState } from "../../utils/localStorage";
 
 export const HotspotContext = createContext();
 
