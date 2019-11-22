@@ -1,75 +1,176 @@
-import React from "react";
-import axios from "axios";
-import { Form, Field, withFormik } from "formik";
-import { Link, withRouter } from "react-router-dom";
-import * as yup from "yup";
+/* eslint-disable */
 
-import "./login.css";
+import React, { useEffect, useState } from "react";
+import {
+	Avatar,
+	Button,
+	CircularProgress,
+	Divider,
+	TextField,
+	Link,
+	Box,
+	Grid,
+	Typography,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-function Login({ errors, touched }) {
+const copyRight = () => {
 	return (
-		<div className="login-wrapper">
-			<h3>Sign Up</h3>
-			<Form>
-				<div className="login-field">
-					{/* username: */}
-					Username or Email:
-					<Field
-						type="username"
-						name="username"
-						placeholder="username"
-					/>
-					{touched.username && errors.username && (
-						<p>{errors.username}</p>
-					)}
-				</div>
-				<div className="login-field">
-					{/* password: */}
-					Password:
-					<Field
-						type="password"
-						name="password"
-						placeholder="password"
-					/>
-					{touched.password && errors.password && (
-						<p>{errors.password}</p>
-					)}
-					<button className="button" type="submit">
-						submit
-					</button>
-					<div className="link">
-						<Link to="/register">Don't have an account?</Link>
-					</div>
-				</div>
-			</Form>
-		</div>
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyright © "}
+			<Link color="inherit" href="/">
+				Hot Spot
+			</Link>
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
 	);
-}
-const FormikLogin = withRouter(
-	withFormik({
-		mapPropsToValues({ username, password }) {
-			return {
-				username: username || "",
-				password: password || "",
-			};
+};
+const useStyles = makeStyles(theme => ({
+	"@global": {
+		body: {
+			backgroundColor: theme.palette.common.white,
 		},
-		validationSchema: yup.object().shape({
-			username: yup.string().required("Username is a required Field"),
-			password: yup.string().required("Password is a required field"),
-		}),
-		handleSubmit(users, { props }) {
-			axios
-				.post("http://localhost:3300/users", users)
-				.then(res => {
-					localStorage.setItem("token", res.data.token);
-					const user_id = res.data.id;
-					props.history.push(`/profile/${user_id}`);
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		},
-	})(Login)
-);
+	},
+	paper: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	},
+	form: {
+		width: "70%", // Fix IE 11 issue.
+		marginTop: theme.spacing(3),
+	},
+	submit: {
+		margin: theme.spacing(3, 0, 2),
+	},
+	signInWithGoogle: {
+		margin: theme.spacing(2, 0, 2),
+	},
+	progress: {
+		margin: theme.spacing(1),
+		color: "white",
+	},
+	link: {
+		textAlign: "center",
+	},
+}));
 
-export default FormikLogin;
+const SignInForm = ({
+	values,
+	handleSubmit,
+	handleChange,
+	handleBlur,
+	signInWithGoogle,
+	isLoading,
+	signInError,
+	errors,
+	touched,
+}) => {
+	const classes = useStyles();
+
+	useEffect(() => {
+		if (signInError) {
+			if (signInError.code === "auth/invalid-email") {
+			} else if (signInError.code === "auth/user-not-found") {
+			} else if (signInError.code === "auth/wrong-password") {
+			}
+		}
+	}, [signInError]);
+	return (
+		<>
+			<Grid
+				container
+				spacing={0}
+				direction="column"
+				alignItems="center"
+				justify="center"
+				style={{ minHeight: "100vh" }}
+			>
+				<Grid item xs={12} className={classes.paper}>
+					<Typography component="h1" variant="h5">
+						Hot Spot
+					</Typography>
+					<Typography component="h1" variant="h5">
+						Sign In
+					</Typography>
+
+					<form
+						className={classes.form}
+						noValidate
+						onSubmit={handleSubmit}
+					>
+						<Grid container spacing={2}>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									id="userId"
+									label="UserId"
+									name="userId"
+									autoComplete="userId"
+									placeholder="Username or email"
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									name="password"
+									label="Password"
+									type="password"
+									id="password"
+									autoComplete="current-password"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									// helperText={
+									// 	touched.password ? errors.password : ""
+									// }
+									// error={
+									// 	touched.password &&
+									// 	Boolean(errors.password)
+									// }
+								/>
+							</Grid>
+						</Grid>
+						<Button
+							style={{ background: "#F5945B", color: "#21242C" }}
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+						>
+							{!isLoading ? (
+								"Sign In"
+							) : (
+								<CircularProgress
+									className={classes.progress}
+									size={30}
+								/>
+							)}
+						</Button>
+						<div className={classes.link}>
+							<Link href="/register" variant="body2">
+								Don't have an account? Register
+							</Link>
+						</div>
+
+						<Divider />
+					</form>
+					<Box mt={5}>{copyRight}</Box>
+				</Grid>
+			</Grid>
+		</>
+	);
+};
+
+export default SignInForm;

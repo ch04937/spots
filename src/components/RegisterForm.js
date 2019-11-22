@@ -1,94 +1,297 @@
-import React from "react";
-import { Form, Field, withFormik } from "formik";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import axios from "axios";
+/* eslint-disable */
 
-const RegisterForm = ({ errors, touched }) => {
+import React, { useEffect, useState } from "react";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+	Avatar,
+	Box,
+	Button,
+	CircularProgress,
+	Divider,
+	FormControl,
+	FormHelperText,
+	Grid,
+	InputLabel,
+	Link,
+	MenuItem,
+	Select,
+	TextField,
+	Typography,
+} from "@material-ui/core";
+const copyRight = () => {
 	return (
-		<div className="RegisterForm-wrapper">
-			<h3>Hot spot signup</h3>
-			<div className="RegisterForm-summary">
-				<Form>
-					username:
-					<Field
-						type="username"
-						name="username"
-						placeholder="username"
-					/>
-					{touched.username && errors.username && (
-						<p className="error">{errors.username}</p>
-					)}
-					email:
-					<Field type="email" name="email" placeholder="email" />
-					{touched.email && errors.email && (
-						<p className="error">{errors.email}</p>
-					)}
-					Password:
-					<Field
-						type="password"
-						name="password"
-						placeholder="password"
-					/>
-					{touched.password && errors.password && (
-						<p className="error">{errors.password}</p>
-					)}
-					Re-Enter Password:
-					<Field
-						type="password"
-						name="reEnterPassword"
-						placeholder="password"
-					/>
-					{touched.password && errors.password && (
-						<p className="error">{errors.password}</p>
-					)}
-					<button className="regiester-button" type="submit">
-						{" "}
-						Let's Get Started
-					</button>
-					<Link to="/login">
-						<p>Have an account? Log in</p>
-					</Link>
-				</Form>
-			</div>
-			<div className="RegisterForm-links"></div>
-		</div>
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyright © "}
+			<Link color="inherit" href="https://material-ui.com/">
+				Hot Spot
+			</Link>{" "}
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
 	);
 };
-const FormikRegisterForm = withFormik({
-	mapPropsToValues({ username, email, password, reEnterPassword }) {
-		return {
-			username: username || "",
-			email: email || "",
-			password: password || "",
-			reEnterPassword: reEnterPassword || "",
-		};
-	},
-	validationSchema: Yup.object().shape({
-		username: Yup.string().required("username is a required field"),
-		email: Yup.string().required("email is a required field"),
-		password: Yup.string().required("password is a required field"),
-		reEnterPassword: Yup.string()
-			.required("please confirm  password")
-			.test("passwords-match", "passwords must match", function(value) {
-				return this.parent.password === value;
-			}),
-	}),
-	handleSubmit(values, { props }) {
-		console.log(values);
-		axios
-			.post(
-				"https://ch04937-hotspot-api.herokuapp.com/api/auth/register",
-				values
-			)
-			.then((res) => {
-				console.log("its getting to .then() progess", res.data);
-				props.history.push("/");
-			})
-			.catch((err) => {
-				console.log("something is up bro", err);
-			});
-	},
-})(RegisterForm);
 
-export default FormikRegisterForm;
+const useStyles = makeStyles(theme => ({
+	"@global": {
+		body: {
+			backgroundColor: theme.palette.common.white,
+		},
+	},
+	paper: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	},
+	form: {
+		width: "70%",
+		padding: "0 20px",
+		marginTop: theme.spacing(3),
+	},
+	formControl: {
+		minWidth: 160,
+	},
+	submit: {
+		margin: theme.spacing(3, 0, 2),
+	},
+	signInWithGoogle: {
+		margin: theme.spacing(2, 0, 2),
+	},
+
+	progress: {
+		margin: theme.spacing(1),
+		color: "white",
+	},
+	link: {
+		textAlign: "center",
+	},
+}));
+const RegistrationForm = ({
+	values,
+	errors,
+	touched,
+	handleChange,
+	handleSubmit,
+	handleBlur,
+	signInWithGoogle,
+	isLoading,
+	signUpError,
+}) => {
+	const classes = useStyles();
+
+	useEffect(() => {
+		if (signUpError) {
+			if (signUpError.code === "auth/email-already-in-use") {
+			}
+		}
+	}, [signUpError]);
+
+	return (
+		<>
+			<Grid
+				container
+				spacing={0}
+				direction="column"
+				alignItems="center"
+				justify="center"
+				style={{ minHeight: "100vh" }}
+			>
+				<div className={classes.paper}>
+					<Typography component="h1" variant="h5">
+						Hot Spot
+					</Typography>
+					<Typography component="h1" variant="h5">
+						Sign Up
+					</Typography>
+					<form
+						className={classes.form}
+						noValidate
+						onSubmit={handleSubmit}
+					>
+						<Grid container spacing={2}>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									autoComplete="firstName"
+									name="firstName"
+									variant="outlined"
+									required
+									fullWidth
+									id="firstName"
+									// value={values.firstName}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									label="First Name"
+									type="text"
+									// helperText={
+									// 	touched.firstName
+									// 		? errors.firstName
+									// 		: ""
+									// }
+									// error={
+									// 	touched.firstName &&
+									// 	Boolean(errors.firstName)
+									// }
+								/>
+							</Grid>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									id="lastName"
+									// value={values.lastName}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									label="Last Name"
+									name="lastName"
+									autoComplete="lastName"
+									type="text"
+									// helperText={
+									// 	touched.lastName ? errors.lastName : ""
+									// }
+									// error={
+									// 	touched.lastName &&
+									// 	Boolean(errors.lastName)
+									// }
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									id="email"
+									// value={values.email}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									label="Email Address"
+									name="email"
+									autoComplete="email"
+									// helperText={
+									// 	touched.email ? errors.email : ""
+									// }
+									// error={
+									// 	touched.email && Boolean(errors.email)
+									// }
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									name="username"
+									label="Username"
+									type="text"
+									id="username"
+									// value={values.username}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									autoComplete="current-username"
+									// helperText={
+									// 	touched.username ? errors.username : ""
+									// }
+									// error={
+									// 	touched.username &&
+									// 	Boolean(errors.username)
+									// }
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									name="password"
+									label="Password"
+									type="password"
+									id="password"
+									// value={values.password}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									autoComplete="current-password"
+									// helperText={
+									// 	touched.password ? errors.password : ""
+									// }
+									// error={
+									// 	touched.password &&
+									// 	Boolean(errors.password)
+									// }
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									style={{ background: "#F2D2BF" }}
+									variant="outlined"
+									required
+									fullWidth
+									name="passwordConfirmation"
+									label="Confirm Password"
+									type="password"
+									id="password-confirmation"
+									// value={values.passwordConfirmation}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									autoComplete="confirm-password"
+									// helperText={
+									// 	touched.passwordConfirmation
+									// 		? errors.passwordConfirmation
+									// 		: ""
+									// }
+									// error={
+									// 	touched.passwordConfirmation &&
+									// 	Boolean(errors.passwordConfirmation)
+									// }
+								/>
+							</Grid>
+						</Grid>
+						<Grid item xs={12}></Grid>
+
+						<Grid item xs={12}>
+							<Button
+								style={{
+									background: "#F5945B",
+									color: "#21242C",
+								}}
+								type="submit"
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.submit}
+							>
+								{!isLoading ? (
+									"Sign Up"
+								) : (
+									<CircularProgress
+										className={classes.progress}
+										size={30}
+									/>
+								)}
+							</Button>
+							<div className={classes.link}>
+								<Link href="/sign-in">
+									Already has an account ? Sign In
+								</Link>
+							</div>
+
+							<Divider />
+						</Grid>
+					</form>
+
+					<Box mt={5}>{copyRight}</Box>
+				</div>
+			</Grid>
+		</>
+	);
+};
+
+export default RegistrationForm;
