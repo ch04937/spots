@@ -37,14 +37,14 @@ export const AuthState = props => {
 	}, [state]);
 
 	const signUpUser = async values => {
-		dispatch({ types: IS_LOADING, payload: true });
+		dispatch({ type: IS_LOADING, payload: true });
 		try {
-			const response = await client.post("/auth/register/", values);
+			const response = await client.post("/auth/register", values);
 
 			dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
-		} catch (e) {
-			console.log(e);
-			dispatch({ type: SIGNUP_FAILURE, payload: e });
+		} catch (error) {
+			console.log(error);
+			dispatch({ type: SIGNUP_FAILURE, payload: error });
 		}
 	};
 	const signInWithUserIdAndPassword = async credential => {
@@ -53,9 +53,8 @@ export const AuthState = props => {
 			const response = await client.post("/auth/login", credential);
 
 			dispatch({ type: SIGNIN_SUCCESS, payload: response.data });
-		} catch (e) {
-			console.log(e);
-			dispatch({ type: SIGNIN_FAILURE, payload: e });
+		} catch (error) {
+			dispatch({ type: SIGNIN_FAILURE, payload: error });
 		}
 	};
 	const signOut = () => {
@@ -69,7 +68,7 @@ export const AuthState = props => {
 
 	return (
 		<AuthContext.Provider
-			values={{
+			value={{
 				accessToken: state.accessToken,
 				isLoading: state.isLoading,
 				signInError: state.signInError,

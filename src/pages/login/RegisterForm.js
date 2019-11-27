@@ -49,10 +49,6 @@ const useStyles = makeStyles(theme => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
-	signInWithGoogle: {
-		margin: theme.spacing(2, 0, 2),
-	},
-
 	progress: {
 		margin: theme.spacing(1),
 		color: "white",
@@ -62,6 +58,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 const RegistrationForm = ({
+	values,
+	errors,
+	touched,
 	handleChange,
 	handleSubmit,
 	handleBlur,

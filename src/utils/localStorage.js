@@ -21,6 +21,6 @@ export const removeState = () => {
 	try {
 		localStorage.clear();
 	} catch (e) {
-		console.log(`error occurs while saving state: ${e}`);
+		console.log(`error occurs while clearing state: ${e}`);
 	}
 };

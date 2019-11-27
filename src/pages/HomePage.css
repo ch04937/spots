@@ -1,3 +1,6 @@
+.HomePage-container {
+	margin-top: 50%;
+}
 .HomePage-links {
 	display: flex;
 	justify-content: space-around;

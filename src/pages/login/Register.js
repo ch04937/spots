@@ -1,14 +1,15 @@
-/* eslint-disable */
-
 import React, { useContext, useEffect } from "react";
-import { Grid } from "@material-ui/core";
-import { AuthContext } from "../../contexts/auth/authState";
 import { Formik } from "formik";
-import RegistrationForm from "./RegistrationForm";
 import * as Yup from "yup";
+
+//adding components
+import RegistrationForm from "./RegistrationForm";
+import { AuthContext } from "../../contexts/auth/authState";
+
+//adding styles
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
-import SigninNavbar from "../../components/Navbar/signinnav";
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
@@ -56,8 +57,6 @@ const Registration = ({ history }) => {
 	return (
 		<>
 			<div className={classes.root}>
-				<SigninNavbar />
-				<CssBaseline />
 				<Grid container>
 					<Grid item md={6} style={{ background: "#A35629" }}></Grid>
 					<Grid item md={6}>
@@ -71,10 +70,6 @@ const Registration = ({ history }) => {
 								passwordConfirmation: "",
 							}}
 							onSubmit={(values, actions) => {
-								ReactGA.event({
-									category: "Register",
-									action: "New User Signed Up",
-								});
 								signUpUser(values);
 								actions.resetForm();
 							}}
