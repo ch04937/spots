@@ -47,11 +47,11 @@ export const AuthState = props => {
 			dispatch({ type: SIGNUP_FAILURE, payload: error });
 		}
 	};
-	const signInWithUserIdAndPassword = async credential => {
+	const signInWithUsernameAndPassword = async credential => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
 			const response = await client.post("/auth/login", credential);
-
+			console.log("login", response);
 			dispatch({ type: SIGNIN_SUCCESS, payload: response.data });
 		} catch (error) {
 			dispatch({ type: SIGNIN_FAILURE, payload: error });
@@ -74,7 +74,7 @@ export const AuthState = props => {
 				signInError: state.signInError,
 				signUpError: state.signUpError,
 				userProfile: state.userProfile,
-				signInWithUserIdAndPassword,
+				signInWithUsernameAndPassword,
 				signUpUser,
 				signOut,
 			}}

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./HomePage.css";
+import "./pages.scss";
 
-const HomePage = () => {
+const Landing = () => {
 	return (
-		<div className="HomePage-container">
+		<div className="Landing-container">
 			<h3>Landing Page</h3>
-			<div className="HomePage-links">
+			<div className="Landing-links">
 				<div className="button-div">
 					<Link to="/sign-in">Sign In</Link>
 				</div>
@@ -19,4 +19,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default Landing;

@@ -1,0 +1,17 @@
+.Landing-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	height: 100vh;
+	.button-div {
+		padding: 0 25%;
+		border-radius: 5px;
+		background: #86c5d9;
+		margin: 3px auto;
+		height: 35px;
+		a {
+			text-decoration: none;
+		}
+	}
+}
