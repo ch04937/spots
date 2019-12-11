@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export default function Login() {
+export default function Login({ history }) {
 	const classes = useStyles();
 
 	const [credentials, setCredentials] = useState({

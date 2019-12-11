@@ -27,7 +27,7 @@ function App() {
 					<Route path="/register" component={Register} />
 					<HotspotState>
 						<PrivateRoute path="/profile" component={Profile} />
-						<PrivateRoute path="/chat" component={Chat} />
+						<PrivateRoute path={`/chat`} component={Chat} />
 						<NavBar />
 					</HotspotState>
 					{/* <Footer /> */}

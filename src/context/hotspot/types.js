@@ -1,1 +1,3 @@
 export const IS_LOADING = "IS_LOADING";
+export const USER_ROOM_SUCCESS = "USER_ROOM_SUCCESS";
+export const USER_ROOM_FAILURE = "USER_ROOM_FAILURE";
