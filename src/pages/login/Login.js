@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useContext, useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -60,14 +58,12 @@ export default function Login({ history }) {
 	const classes = useStyles();
 
 	const [credentials, setCredentials] = useState({
-		email: "username1",
-		password: "password1",
+		email: "",
+		password: "",
 	});
-	const {
-		signInWithUsernameAndPassword,
-		isLoading,
-		accessToken,
-	} = useContext(AuthContext);
+	const { signInWithUserIdAndPassword, isLoading, accessToken } = useContext(
+		AuthContext
+	);
 
 	const handleChange = event => {
 		setCredentials({
@@ -77,7 +73,7 @@ export default function Login({ history }) {
 	};
 	useEffect(() => {
 		if (accessToken) {
-			history.push("/chat");
+			history.push("/search");
 		}
 	});
 	// if (!isLoading) {
@@ -99,7 +95,7 @@ export default function Login({ history }) {
 					noValidate
 					onSubmit={event => {
 						event.preventDefault();
-						signInWithUsernameAndPassword(
+						signInWithUserIdAndPassword(
 							credentials.email,
 							credentials.password
 						);

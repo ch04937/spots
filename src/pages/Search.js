@@ -13,7 +13,7 @@ import { HotspotContext } from "../context/hotspot/hotspotState";
 import "./pages.scss";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
-const Chat = props => {
+const Search = props => {
 	const [room, setRoom] = useState([]);
 	const { userProfile } = useContext(AuthContext);
 	const { getUserRoom, userRoom } = useContext(HotspotContext);
@@ -21,14 +21,14 @@ const Chat = props => {
 		getUserRoom();
 	}, []);
 	return (
-		<div className="chat-container">
-			<div className="chat-menu">
+		<div className="search-container">
+			<div className="search-menu">
 				<React.Fragment>
 					<SideNav>
 						<SideNav.Toggle />
 						{room.length > 0 &&
 							room.map(room => (
-								<div className="chat-room" key={room.id}>
+								<div className="search-room" key={room.id}>
 									<SideNav.Nav>
 										<NavItem eventKey={room.id}>
 											<NavText>
@@ -43,7 +43,7 @@ const Chat = props => {
 					</SideNav>
 				</React.Fragment>
 			</div>
-			<div className="chat-body">
+			<div className="search-body">
 				<p>{userProfile.username}</p>
 
 				<SendMessageForm />
@@ -51,4 +51,4 @@ const Chat = props => {
 		</div>
 	);
 };
-export default Chat;
+export default Search;

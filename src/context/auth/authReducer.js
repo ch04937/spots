@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import {
 	IS_LOADING,
 	SIGNIN_SUCCESS,

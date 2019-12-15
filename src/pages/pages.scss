@@ -1,16 +1,16 @@
-.chat-container {
+.search-container {
 	border: 3px solid red;
 	display: flex;
 	flex-direction: row;
 	height: 600px;
 }
-.chat-menu {
+.search-menu {
 	border: 1px dashed yellow;
 	position: relative;
 	text-align: center;
 	height: auto;
 }
-.chat-body {
+.search-body {
 	border: 1px dashed blue;
 	width: 440px;
 	margin-left: 62px;

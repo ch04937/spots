@@ -12,7 +12,7 @@ import Profile from "./pages/Profile.js";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/Register";
 // import Footer from "./pages/footer.js";
-import Chat from "./pages/Chat.js";
+import Search from "./pages/Search.js";
 import PrivateRoute from "./components/PrivateRoute";
 
 import "./App.css";
@@ -27,10 +27,9 @@ function App() {
 					<Route path="/register" component={Register} />
 					<HotspotState>
 						<PrivateRoute path="/profile" component={Profile} />
-						<PrivateRoute path={`/chat`} component={Chat} />
-						<NavBar />
+						<PrivateRoute path={`/search`} component={Search} />
+						<PrivateRoute component={NavBar} />
 					</HotspotState>
-					{/* <Footer /> */}
 				</Switch>
 			</AuthState>
 		</div>

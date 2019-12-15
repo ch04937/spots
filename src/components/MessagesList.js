@@ -23,10 +23,10 @@ export default function MessagesList(props) {
 	}, []);
 	return (
 		<div className="message-list">
-			{message.map((chat) => (
-				<div className="messages" key={chat.id}>
+			{message.map((search) => (
+				<div className="messages" key={search.id}>
 					<p>
-						{chat.username} said he is in room {chat.name}
+						{search.username} said he is in room {search.name}
 					</p>
 				</div>
 			))}

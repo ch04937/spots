@@ -1,5 +1,12 @@
 import { IS_LOADING, USER_ROOM_SUCCESS, USER_ROOM_FAILURE } from "./types";
 
+const roomFormat = room => {
+	return {
+		...room,
+		searchs: [],
+	};
+};
+
 const setIsLoading = (state, action) => {
 	return {
 		...state,
@@ -10,7 +17,7 @@ const userRoomSuccess = (state, action) => {
 	return {
 		...state,
 		isLoading: false,
-		userRoom: action.payload,
+		userRoom: action.payload.map(roomFormat),
 	};
 };
 const userRoomFailure = (state, action) => {

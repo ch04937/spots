@@ -76,7 +76,7 @@ export default function Register() {
 	};
 
 	if (!isLoading) {
-		return <Redirect to="/chat" />;
+		return <Redirect to="/search" />;
 	}
 
 	// const RegistrationSchema = Yup.object().shape({
