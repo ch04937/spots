@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 //state
-import { HotspotState } from "./context/hotspot/hotspotState";
+import { TwhereState } from "./context/twhere/twhereState";
 import { AuthState } from "./context/auth/authState";
 
 //all components
@@ -25,11 +25,11 @@ function App() {
 					<Route exact path="/" component={Landing} />
 					<Route path="/sign-in" component={Login} />
 					<Route path="/register" component={Register} />
-					<HotspotState>
+					<TwhereState>
 						<PrivateRoute path="/profile" component={Profile} />
 						<PrivateRoute path={`/search`} component={Search} />
 						<PrivateRoute component={NavBar} />
-					</HotspotState>
+					</TwhereState>
 				</Switch>
 			</AuthState>
 		</div>

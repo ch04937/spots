@@ -28,7 +28,7 @@ const userRoomFailure = (state, action) => {
 	};
 };
 
-const hotspotReducer = (state, action) => {
+const twhereReducer = (state, action) => {
 	switch (action.type) {
 		case IS_LOADING:
 			return setIsLoading(state, action);
@@ -41,4 +41,4 @@ const hotspotReducer = (state, action) => {
 	}
 };
 
-export default hotspotReducer;
+export default twhereReducer;

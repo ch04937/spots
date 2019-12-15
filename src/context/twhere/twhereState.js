@@ -2,27 +2,27 @@ import React, { createContext, useEffect, useReducer } from "react";
 
 import { IS_LOADING, USER_ROOM_SUCCESS, USER_ROOM_FAILURE } from "./types";
 
-import hotspotReducer from "./hotspotReducer";
+import twhereReducer from "./twhereReducer";
 import { clientWithAuth } from "../../utils/api";
 import { loadState, saveState } from "../../utils/localStorage";
 
-export const HotspotContext = createContext();
+export const TwhereContext = createContext();
 
-export const HotspotState = props => {
+export const TwhereState = props => {
 	const initialState = {
 		isLoading: false,
 		userRoom: [],
 		userRoomError: null,
 	};
 
-	const localState = loadState("hotspot");
+	const localState = loadState("twhere");
 
 	const [state, dispatch] = useReducer(
-		hotspotReducer,
+		twhereReducer,
 		localState || initialState
 	);
 	useEffect(() => {
-		saveState("hotspot", state);
+		saveState("twhere", state);
 	}, [state]);
 
 	const getUserRoom = async () => {
@@ -39,7 +39,7 @@ export const HotspotState = props => {
 		}
 	};
 	return (
-		<HotspotContext.Provider
+		<TwhereContext.Provider
 			value={{
 				isLoading: state.isLoading,
 				userRoom: state.userRoom,
@@ -48,6 +48,6 @@ export const HotspotState = props => {
 			}}
 		>
 			{props.children}
-		</HotspotContext.Provider>
+		</TwhereContext.Provider>
 	);
 };

@@ -7,7 +7,7 @@ import SideNav, { NavItem, NavText } from "@trendmicro/react-sidenav";
 import SendMessageForm from "../components/SendMessageForm";
 
 import { AuthContext } from "../context/auth/authState";
-import { HotspotContext } from "../context/hotspot/hotspotState";
+import { TwhereContext } from "../context/twhere/twhereState";
 
 //setting styles
 import "./pages.scss";
@@ -16,7 +16,7 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 const Search = props => {
 	const [room, setRoom] = useState([]);
 	const { userProfile } = useContext(AuthContext);
-	const { getUserRoom, userRoom } = useContext(HotspotContext);
+	const { getUserRoom, userRoom } = useContext(TwhereContext);
 	useEffect(() => {
 		getUserRoom();
 	}, []);
