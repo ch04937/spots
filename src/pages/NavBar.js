@@ -10,7 +10,7 @@ const NavBar = () => {
 				<Link to="/search">Search</Link>
 				<Link to="/favorites">Favorites</Link>
 				<Link to="/settings">Settings</Link>
-				<Link to="/profile">Me</Link>
+				<Link to="/profile">Profile</Link>
 			</div>
 		</div>
 	);

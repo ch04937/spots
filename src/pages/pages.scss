@@ -5,8 +5,13 @@
 	a {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		height: 50px;
+		width: 100%;
 		text-decoration: none;
+	}
+	a:hover {
+		background: #b8b8b8;
 	}
 }
 
