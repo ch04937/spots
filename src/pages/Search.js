@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Route, Link } from "react-router-dom";
-import SideNav, { NavItem, NavText } from "@trendmicro/react-sidenav";
+import React, { useEffect, useContext } from "react";
+// import { Route, Link } from "react-router-dom";
+import SideNav from "@trendmicro/react-sidenav"; // { NavItem, NavText }
 
 //adding components
 // import MessagesList from "../components/MessagesList";
@@ -14,7 +14,6 @@ import "./pages.scss";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 const Search = props => {
-	const [room, setRoom] = useState([]);
 	const { userProfile } = useContext(AuthContext);
 	const { getUserRoom, userRoom } = useContext(TwhereContext);
 	useEffect(() => {
@@ -26,26 +25,11 @@ const Search = props => {
 				<React.Fragment>
 					<SideNav>
 						<SideNav.Toggle />
-						{room.length > 0 &&
-							room.map(room => (
-								<div className="search-room" key={room.id}>
-									<SideNav.Nav>
-										<NavItem eventKey={room.id}>
-											<NavText>
-												<Link to={`room?${room.name}`}>
-													{room.name}
-												</Link>
-											</NavText>
-										</NavItem>
-									</SideNav.Nav>
-								</div>
-							))}
 					</SideNav>
 				</React.Fragment>
 			</div>
 			<div className="search-body">
 				<p>{userProfile.username}</p>
-
 				<SendMessageForm />
 			</div>
 		</div>

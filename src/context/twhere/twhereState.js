@@ -29,6 +29,7 @@ export const TwhereState = props => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
 			const room = await clientWithAuth(`users/room`);
+			console.log(room);
 			dispatch({
 				type: USER_ROOM_SUCCESS,
 				payload: room.data.room,

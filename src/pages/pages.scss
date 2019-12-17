@@ -1,3 +1,15 @@
+.NavBar-links {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	a {
+		display: flex;
+		align-items: center;
+		height: 50px;
+		text-decoration: none;
+	}
+}
+
 .search-container {
 	border: 3px solid red;
 	display: flex;
@@ -45,6 +57,7 @@
 	background: #555;
 }
 
+//landing page
 .Landing-container {
 	display: flex;
 	flex-direction: column;
@@ -62,6 +75,7 @@
 		}
 	}
 }
+//footer
 .footer-wrapper {
 	padding: 0 30px;
 	display: flex;
