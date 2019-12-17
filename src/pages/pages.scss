@@ -12,49 +12,7 @@
 
 .search-container {
 	border: 3px solid red;
-	display: flex;
-	flex-direction: row;
 	height: 600px;
-}
-.search-menu {
-	border: 1px dashed yellow;
-	position: relative;
-	text-align: center;
-	height: auto;
-}
-.search-body {
-	border: 1px dashed blue;
-	width: 440px;
-	margin-left: 62px;
-	height: auto;
-}
-.title {
-	border: 1px solid green;
-}
-.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
-	min-width: 240px;
-	overflow: auto;
-}
-/* width */
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-	background: #f1f1f1;
-	display: none;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	background: #888;
-	border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-	background: #555;
 }
 
 //landing page
@@ -91,4 +49,29 @@
 	.footer-links {
 		width: 45%;
 	}
+}
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
+	min-width: 240px;
+	overflow: auto;
+}
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
