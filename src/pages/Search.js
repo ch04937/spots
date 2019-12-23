@@ -8,28 +8,27 @@ import { TwhereContext } from "../context/twhere/twhereState";
 
 //setting styles
 import "./pages.scss";
-// import "semantic-ui-css";
 
 const Search = props => {
 	const { userProfile } = useContext(AuthContext);
-	const { getUserRoom, userRoom } = useContext(TwhereContext);
-	useEffect(() => {
-		getUserRoom();
-	}, []);
+
 	return (
 		<div className="search-container">
 			<h3>Twhere to today? {userProfile.username}</h3>
 			Search Bar
-			<Card.Group>
+			<p>Looking for something specific?</p>
+			<Card.Group style={{ display: "flex", justifyContent: "center" }}>
 				<Card>
-					<Card.Content>
+					<Card.Content style={{ textAlign: "left" }}>
 						<Card.Header>the name of the place</Card.Header>
-						<Image src="../../assests/logoc.png" />
+						<Image src="../assests/logoc.png" />
 						<Card.Description>Rating</Card.Description>
 						<Card.Description>
 							Description of place
 						</Card.Description>
-						<Card.Meta>View More</Card.Meta>
+						<Card.Meta style={{ textAlign: "right" }}>
+							View More
+						</Card.Meta>
 					</Card.Content>
 				</Card>
 			</Card.Group>
