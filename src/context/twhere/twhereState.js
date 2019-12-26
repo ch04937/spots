@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
-import { IS_LOADING, USER_ROOM_SUCCESS, USER_ROOM_FAILURE } from "./types";
+import { IS_LOADING, LOCAL_SPOT_SUCCESS, LOCAL_SPOT_FAILURE } from "./types";
 
 import twhereReducer from "./twhereReducer";
 import { clientWithAuth } from "../../utils/api";
@@ -11,8 +11,8 @@ export const TwhereContext = createContext();
 export const TwhereState = props => {
 	const initialState = {
 		isLoading: false,
-		userRoom: [],
-		userRoomError: null,
+		localSpotsError: null,
+		localSpots: [],
 	};
 
 	const localState = loadState("twhere");
@@ -25,27 +25,26 @@ export const TwhereState = props => {
 		saveState("twhere", state);
 	}, [state]);
 
-	const getUserRoom = async () => {
+	const getLocalSpots = async () => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
-			const room = await clientWithAuth(`users/room`);
-			console.log(room);
+			const spot = await clientWithAuth.post(`search/yelp`, location);
 			dispatch({
-				type: USER_ROOM_SUCCESS,
-				payload: room.data.room,
+				type: LOCAL_SPOT_SUCCESS,
+				payload: spot.data.spot,
 			});
 		} catch (error) {
 			console.log(error);
-			dispatch({ type: USER_ROOM_FAILURE, payload: error });
+			dispatch({ type: LOCAL_SPOT_FAILURE, payload: error });
 		}
 	};
 	return (
 		<TwhereContext.Provider
 			value={{
 				isLoading: state.isLoading,
-				userRoom: state.userRoom,
-				userRoomError: state.userRoomError,
-				getUserRoom,
+				localSpots: state.localSpots,
+				localSpotsError: state.localSpotsError,
+				getLocalSpots,
 			}}
 		>
 			{props.children}

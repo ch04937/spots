@@ -1,16 +1,23 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 // import { Route, Link } from "react-router-dom";
-import { Card, Icon, Image } from "semantic-ui-react";
 
 //adding components
 import { AuthContext } from "../context/auth/authState";
 import { TwhereContext } from "../context/twhere/twhereState";
 
 //setting styles
+import { Card, Icon, Image } from "semantic-ui-react";
 import "./pages.scss";
 
 const Search = props => {
 	const { userProfile } = useContext(AuthContext);
+	const { getLocalSpots, localSpots } = useContext(TwhereContext);
+
+	useEffect(() => {
+		const { city, state } = userProfile;
+		const location = `${city}, ` + state;
+		getLocalSpots(location);
+	}, []);
 
 	return (
 		<div className="search-container">

@@ -1,9 +1,9 @@
-import { IS_LOADING, USER_ROOM_SUCCESS, USER_ROOM_FAILURE } from "./types";
+import { IS_LOADING, LOCAL_SPOT_SUCCESS, LOCAL_SPOT_FAILURE } from "./types";
 
-const roomFormat = room => {
+const spotFormat = spot => {
 	return {
-		...room,
-		searchs: [],
+		...spot,
+		searches: [],
 	};
 };
 
@@ -13,18 +13,18 @@ const setIsLoading = (state, action) => {
 		isLoading: action.payload,
 	};
 };
-const userRoomSuccess = (state, action) => {
+const localSpotSuccess = (state, action) => {
 	return {
 		...state,
 		isLoading: false,
-		userRoom: action.payload.map(roomFormat),
+		localSpot: action.payload.map(spotFormat),
 	};
 };
-const userRoomFailure = (state, action) => {
+const localSpotFailure = (state, action) => {
 	return {
 		...state,
 		isLoading: false,
-		userRoomError: action.payload,
+		localSpotError: action.payload,
 	};
 };
 
@@ -32,10 +32,10 @@ const twhereReducer = (state, action) => {
 	switch (action.type) {
 		case IS_LOADING:
 			return setIsLoading(state, action);
-		case USER_ROOM_SUCCESS:
-			return userRoomSuccess(state, action);
-		case USER_ROOM_FAILURE:
-			return userRoomFailure(state, action);
+		case LOCAL_SPOT_SUCCESS:
+			return localSpotSuccess(state, action);
+		case LOCAL_SPOT_FAILURE:
+			return localSpotFailure(state, action);
 		default:
 			return state;
 	}
