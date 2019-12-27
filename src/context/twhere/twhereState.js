@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
+import axios from "axios";
 import { IS_LOADING, LOCAL_SPOT_SUCCESS, LOCAL_SPOT_FAILURE } from "./types";
 
 import twhereReducer from "./twhereReducer";
@@ -25,10 +26,13 @@ export const TwhereState = props => {
 		saveState("twhere", state);
 	}, [state]);
 
-	const getLocalSpots = async () => {
+	const getLocalSpots = async location => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
-			const spot = await clientWithAuth.post(`search/yelp`, location);
+			const spot = await axios.get(
+				"http://localhost:3300/search/yelp",
+				location
+			);
 			dispatch({
 				type: LOCAL_SPOT_SUCCESS,
 				payload: spot.data.spot,
