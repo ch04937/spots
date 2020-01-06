@@ -1,43 +1,31 @@
-import React from "react";
-import {
-	Container,
-	Divider,
-	Dropdown,
-	Grid,
-	Header,
-	Image,
-	List,
-	Menu,
-	Segment,
-} from "semantic-ui-react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth/authState";
+
+import { Container, Image, Menu } from "semantic-ui-react";
 
 const Settings = () => {
+	const { userProfile } = useContext(AuthContext);
 	return (
 		<div>
-			<Menu style={{ display: "flex", flexDirection: "column" }}>
+			<Menu
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					width: "490px",
+					margin: "auto",
+				}}
+			>
 				<Container>
 					<Menu.Item as="a" header>
 						<Image size="mini" src="/logo.png" circular />
-						Username
+						{userProfile.username}
 					</Menu.Item>
-					<Menu.Item as="a">Home</Menu.Item>
-					<Dropdown item simple text="Dropdown">
-						<Dropdown.Menu>
-							<Dropdown.Item>List Item</Dropdown.Item>
-							<Dropdown.Item>List Item</Dropdown.Item>
-							<Dropdown.Divider />
-							<Dropdown.Header>Header Item</Dropdown.Header>
-							<Dropdown.Item>
-								<i className="dropdown icon" />
-								<span className="text">Submenu</span>
-								<Dropdown.Menu>
-									<Dropdown.Item>List Item</Dropdown.Item>
-									<Dropdown.Item>List Item</Dropdown.Item>
-								</Dropdown.Menu>
-							</Dropdown.Item>
-							<Dropdown.Item>List Item</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
+					<Menu.Item as="a">
+						<p>Account Settings </p>
+					</Menu.Item>
+					<Menu.Item as="a">
+						<p>Sign Out </p>
+					</Menu.Item>
 				</Container>
 			</Menu>
 		</div>

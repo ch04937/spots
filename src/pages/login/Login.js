@@ -18,7 +18,7 @@ const SignIn = ({ history }) => {
 	const classes = useStyles();
 	useEffect(() => {
 		if (accessToken) {
-			history.push("/admin-dashboard");
+			history.push("/favorites");
 		}
 	}, [accessToken]);
 	return (
