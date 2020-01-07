@@ -17,19 +17,16 @@ const Search = props => {
 	// const { localSpots } = useContext(TwhereContext);
 	const [localSpot, setLocalSpot] = useState([]);
 
-	useEffect(async () => {
+	useEffect(() => {
 		const { city, state, zipcode } = userProfile;
 		const location = `${city}, ` + state + ` ` + zipcode;
 
-		const searchSpot = await axios.post(
-			"http://localhost:3300/search/yelp",
-			{
-				location,
-			}
-		);
+		const searchSpot = axios.post("http://localhost:3300/search/yelp", {
+			location,
+		});
 
 		setLocalSpot(searchSpot);
-	}, [setLocalSpot]);
+	}, []);
 	return (
 		<div
 			className="search-container"
@@ -60,8 +57,9 @@ const Search = props => {
 									<Card.Header>{data.name}</Card.Header>
 									<Image src={data.image_url} />
 									<Card.Description>
-										<p>Yelp Rating {data.rating}</p>
 										<p>
+											Rating: {data.rating}
+											{` `}
 											Based on {data.review_count} Yelp
 											Reviews
 										</p>

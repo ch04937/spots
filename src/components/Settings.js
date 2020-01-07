@@ -4,7 +4,8 @@ import { AuthContext } from "../context/auth/authState";
 import { Container, Image, Menu } from "semantic-ui-react";
 
 const Settings = () => {
-	const { userProfile } = useContext(AuthContext);
+	const { userProfile, signOut } = useContext(AuthContext);
+
 	return (
 		<div>
 			<Menu
@@ -24,7 +25,7 @@ const Settings = () => {
 						<p>Account Settings </p>
 					</Menu.Item>
 					<Menu.Item as="a">
-						<p>Sign Out </p>
+						<p onClick={signOut}>Sign Out </p>
 					</Menu.Item>
 				</Container>
 			</Menu>

@@ -24,7 +24,6 @@ const SignIn = ({ history }) => {
 	return (
 		<div className={classes.root}>
 			<Grid container>
-				<Grid item md={6} style={{ background: "#A35629" }}></Grid>
 				<Grid item md={6}>
 					<SignInForm path={history.location} />
 				</Grid>
