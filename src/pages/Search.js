@@ -7,13 +7,12 @@ import { AuthContext } from "../context/auth/authState";
 // import { TwhereContext } from "../context/twhere/twhereState";
 
 //setting styles
-import { Card, Image, Button } from "semantic-ui-react";
+import { Card, Image, Button, Modal, ModalActions } from "semantic-ui-react";
 import "./pages.scss";
 import logo from "../assests/logoc.png";
 
 const Search = props => {
 	const { userProfile } = useContext(AuthContext);
-	console.log(userProfile);
 	// const { localSpots } = useContext(TwhereContext);
 	const [localSpot, setLocalSpot] = useState([]);
 
@@ -21,20 +20,23 @@ const Search = props => {
 		const { city, state, zipcode } = userProfile;
 		const location = `${city}, ` + state + ` ` + zipcode;
 
-		const searchSpot = axios.post("http://localhost:3300/search/yelp", {
-			location,
-		});
-
-		setLocalSpot(searchSpot);
+		async function searchSpot() {
+			const searchSpot = await axios.post(
+				"http://localhost:3300/search/yelp",
+				{
+					location,
+				}
+			);
+			setLocalSpot(searchSpot);
+		}
+		searchSpot();
 	}, []);
 	return (
 		<div
 			className="search-container"
 			style={{ overflow: "auto", overflowX: "hidden" }}
 		>
-			<h3>Twhere to today? {userProfile.username}</h3>
-			Search Bar
-			<p>Looking for something specific?</p>
+			<h3>Twhere today? {userProfile.username}</h3>
 			<Card.Group
 				style={{
 					display: "flex",
@@ -64,27 +66,7 @@ const Search = props => {
 											Reviews
 										</p>
 									</Card.Description>
-									<Card.Meta
-										style={{
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "space-around",
-											margin: "10px 0px",
-										}}
-									>
-										<a href={data.url}>View More on Yelp</a>
-										<a href={data.url}>
-											<img
-												src={logo}
-												alt="yelpLogo"
-												style={{
-													width: "60px",
-													height: "auto",
-													textAlign: "right",
-												}}
-											/>
-										</a>
-									</Card.Meta>
+
 									<div
 										style={{
 											display: "flex",
@@ -96,11 +78,64 @@ const Search = props => {
 											Dislike
 										</Button>
 										<Button inverted color="green">
-											Like
-										</Button>
-										<Button inverted color="blue">
 											Save
 										</Button>
+										<Modal
+											trigger={
+												<Button inverted color="blue">
+													View More
+												</Button>
+											}
+											style={{
+												width: "500px",
+												padding: "15px",
+											}}
+										>
+											<Modal.Header>
+												{data.name}
+											</Modal.Header>
+											<Modal.Description>
+												<h4>
+													Address:{" "}
+													<a href={"#"}>
+														{data.location.address1}
+													</a>
+												</h4>
+
+												<div
+													style={{
+														display: "flex",
+														justifyContent:
+															"flex-end",
+													}}
+												>
+													<a
+														href={data.url}
+														style={{
+															display: "flex",
+															alignItems:
+																"center",
+															paddingRight:
+																"20px",
+														}}
+													>
+														View More on Yelp
+													</a>
+													<a href={data.url}>
+														<img
+															src={logo}
+															alt="yelpLogo"
+															style={{
+																width: "60px",
+																height: "auto",
+																textAlign:
+																	"right",
+															}}
+														/>
+													</a>
+												</div>
+											</Modal.Description>
+										</Modal>
 									</div>
 								</Card.Content>
 							</Card>

@@ -48,7 +48,7 @@ function Copyright() {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{"Copyright © "}
 			<Link color="inherit" href="https://material-ui.com/">
-				Hot Spot
+				Twhere
 			</Link>{" "}
 			{new Date().getFullYear()}
 			{"."}
@@ -75,9 +75,9 @@ export default function Register() {
 		});
 	};
 
-	if (!isLoading) {
-		return <Redirect to="/search" />;
-	}
+	// if (!isLoading) {
+	// 	return <Redirect to="/favorites" />;
+	// }
 
 	// const RegistrationSchema = Yup.object().shape({
 	// 	firstName: Yup.string()
@@ -236,7 +236,7 @@ export default function Register() {
 					</Button>
 					<Grid container justify="flex-end">
 						<Grid item>
-							<Link href="/signIn" variant="body2">
+							<Link href="/sign-in" variant="body2">
 								Already have an account?
 							</Link>
 						</Grid>
