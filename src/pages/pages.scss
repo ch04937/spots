@@ -1,3 +1,8 @@
+@mixin flex($content, $direction) {
+	display: flex;
+	justify-content: $content;
+	flex-direction: $direction;
+}
 .NavBar-links {
 	display: flex;
 	justify-content: space-around;
@@ -19,24 +24,23 @@
 	border: 3px solid red;
 	height: 600px;
 }
-
-//landing page
-.Landing-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.formik {
+	@include flex(space-around, column);
+	width: 50%;
 	margin: auto;
-	height: 100vh;
-	.button-div {
-		padding: 0 25%;
-		border-radius: 5px;
-		background: #86c5d9;
-		margin: 3px auto;
-		height: 35px;
-		a {
-			text-decoration: none;
+	.field {
+		@include flex(flex-start, column);
+		text-align: left;
+		input {
+			padding: 3% 4%;
+			border: 1px solid #ccc;
+			border-radius: 4px;
 		}
 	}
+}
+//landing page
+.landing-page {
+	@include flex(flex-start, column);
 }
 //footer
 .footer-wrapper {

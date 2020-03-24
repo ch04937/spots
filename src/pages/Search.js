@@ -3,17 +3,16 @@ import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
 
 //adding components
-import { AuthContext } from "../context/auth/authState";
-// import { TwhereContext } from "../context/twhere/twhereState";
+import { AuthContext } from "../utils/context/auth/authState";
+import { TwhereContext } from "../utils/context/twhere/twhereState";
 
 //setting styles
-import { Card, Image, Button, Modal, ModalActions } from "semantic-ui-react";
+import { Card, Image, Button, Modal, Icon } from "semantic-ui-react";
 import "./pages.scss";
 import logo from "../assests/logoc.png";
 
 const Search = props => {
 	const { userProfile } = useContext(AuthContext);
-	// const { localSpots } = useContext(TwhereContext);
 	const [localSpot, setLocalSpot] = useState([]);
 
 	useEffect(() => {
@@ -31,6 +30,13 @@ const Search = props => {
 		}
 		searchSpot();
 	}, []);
+	const addToFavorites = async data => {
+		const { name, id } = data;
+		const { address1 } = data.location;
+		const info = { name: name, address1: address1, yelpId: id };
+		console.log(info);
+		await axios.post("http://localhost:3300/search/favorites", { info });
+	};
 	return (
 		<div
 			className="search-container"
@@ -77,7 +83,12 @@ const Search = props => {
 										<Button inverted color="red">
 											Dislike
 										</Button>
-										<Button inverted color="green">
+										<Icon name="heart" color="red" />
+										<Button
+											onClick={e => addToFavorites(data)}
+											inverted
+											color="green"
+										>
 											Save
 										</Button>
 										<Modal

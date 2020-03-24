@@ -3,7 +3,18 @@ import { Link } from "react-router-dom";
 
 //setting styles
 import "./pages.scss";
-
+const copyRight = () => {
+	return (
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyright © "}
+			<Link color="inherit" href="/">
+				Twhere
+			</Link>
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
+	);
+};
 const Footer = () => {
 	return (
 		<div className="footer-wrapper">

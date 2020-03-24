@@ -11,8 +11,8 @@ import {
 } from "./types";
 import authReducer from "./authReducer";
 
-import { client } from "../../utils/api";
-import { loadState, saveState, removeState } from "../../utils/localStorage";
+import { client } from "../../axiosWithAuth";
+import { loadState, saveState, removeState } from "../../localStorage";
 
 export const AuthContext = createContext();
 
@@ -48,7 +48,8 @@ export const AuthState = props => {
 			dispatch({ type: SIGNUP_FAILURE, payload: error });
 		}
 	};
-	const signInWithUserIdAndPassword = async credential => {
+	const signIn = async credential => {
+		console.log("credential", credential);
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
 			const response = await client.post("/auth/login", credential);
@@ -74,7 +75,7 @@ export const AuthState = props => {
 				signInError: state.signInError,
 				signUpError: state.signUpError,
 				userProfile: state.userProfile,
-				signInWithUserIdAndPassword,
+				signIn,
 				signUpUser,
 				signOut,
 			}}

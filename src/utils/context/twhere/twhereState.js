@@ -1,12 +1,10 @@
 import React, { createContext, useEffect, useReducer } from "react";
 
-import axios from "axios";
 import { IS_LOADING, LOCAL_SPOT_SUCCESS, LOCAL_SPOT_FAILURE } from "./types";
 
 import twhereReducer from "./twhereReducer";
-import { clientWithAuth } from "../../utils/api";
-import { loadState, saveState } from "../../utils/localStorage";
-
+import { loadState, saveState } from "../../localStorage";
+import axios from "axios";
 export const TwhereContext = createContext();
 
 export const TwhereState = props => {
@@ -14,8 +12,8 @@ export const TwhereState = props => {
 		isLoading: false,
 		localSpotsError: null,
 		localSpots: [],
+		savedSpots: [],
 	};
-
 	const localState = loadState("twhere");
 
 	const [state, dispatch] = useReducer(
@@ -42,12 +40,15 @@ export const TwhereState = props => {
 			dispatch({ type: LOCAL_SPOT_FAILURE, payload: error });
 		}
 	};
+
 	return (
 		<TwhereContext.Provider
 			value={{
 				isLoading: state.isLoading,
 				localSpots: state.localSpots,
 				localSpotsError: state.localSpotsError,
+				savedSpots: state.savedSpots,
+				savedSpotsError: state.savedSpotsError,
 				getLocalSpots,
 			}}
 		>

@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import { Redirect } from "react-router-dom";
-import { AuthContext } from "../../context/auth/authState";
+import { AuthContext } from "../../utils/context/auth/authState";
 
 const useStyles = makeStyles(theme => ({
 	"@global": {

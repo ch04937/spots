@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/auth/authState";
+import { AuthContext } from "../utils/context/auth/authState";
 
 import { Container, Image, Menu } from "semantic-ui-react";
 
