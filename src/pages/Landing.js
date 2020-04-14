@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
-import "./pages.scss";
+// import styles from "../stylesheets/pages.module.scss";
 
 const Landing = () => {
 	return (
-		<div className="landing-page">
-			<h3>Landing Page</h3>
+		<div>
+			<h1>Landing Page</h1>
 			<Button>
-				<Link to="/sign-in">Sign In</Link>
+				<Link to="/login">Login In</Link>
 			</Button>
 			<Button>
 				<Link to="/register">Sign Up</Link>

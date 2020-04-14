@@ -7,7 +7,7 @@ import {
 	SIGNUP_SUCCESS,
 	SIGNUP_FAILURE,
 	SIGNOUT_SUCCESS,
-	SIGNOUT_FAILURE,
+	SIGNOUT_FAILURE
 } from "./types";
 import authReducer from "./authReducer";
 
@@ -18,12 +18,10 @@ export const AuthContext = createContext();
 
 export const AuthState = props => {
 	const initialState = {
+		error: "",
 		isLoading: false,
-		signInError: null,
-		signUpError: null,
-		signOutError: null,
 		accessToken: null,
-		userProfile: null,
+		userProfile: null
 	};
 
 	const localState = loadState("auth");
@@ -70,14 +68,13 @@ export const AuthState = props => {
 	return (
 		<AuthContext.Provider
 			value={{
+				error: state.error,
 				accessToken: state.accessToken,
 				isLoading: state.isLoading,
-				signInError: state.signInError,
-				signUpError: state.signUpError,
 				userProfile: state.userProfile,
 				signIn,
 				signUpUser,
-				signOut,
+				signOut
 			}}
 		>
 			{props.children}

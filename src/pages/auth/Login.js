@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button, Loader } from "semantic-ui-react";
 import * as Yup from "yup";
@@ -7,41 +6,45 @@ import * as Yup from "yup";
 import { AuthContext } from "../../utils/context/auth/authState";
 
 import styles from "../../stylesheets/pages.module.scss";
+import { Link } from "react-router-dom";
 
-const registerSchema = Yup.object().shape({
+const SignInSchema = Yup.object().shape({
 	username: Yup.string().required(),
 	password: Yup.string()
 		.min(6, "Password Must be at least 6 characters")
 		.required()
 });
 
-export default function Register() {
-	const { isLoading, register } = useContext(AuthContext);
+const SignIn = () => {
+	const { isLoading, signIn, error } = useContext(AuthContext);
 	const form = [
-		{ id: 1, type: "username", value: "Username", name: "username" },
-		{ id: 2, type: "email", value: "Email", name: "email" },
-		{ id: 3, type: "text", value: "Phone Number" },
-		{ id: 4, type: "password", value: "Password", name: "password" },
-		{ id: 5, type: "password", value: "Confirm Password" }
+		{
+			id: 1,
+			type: "username",
+			value: "Username or Email",
+			name: "username"
+		},
+		{ id: 4, type: "password", value: "Password", name: "password" }
 	];
+
 	return (
-		<div>
-			<h1>Register</h1>
+		<>
+			<h1>Login</h1>
 			<Formik
-				initialValues={{
-					username: "",
-					email: "",
-					phoneNumber: "",
-					password: "",
-					ConfirmPassword: ""
-				}}
+				initialValues={{ username: "", password: "" }}
 				onSubmit={(values, actions) => {
-					register(values);
+					signIn(values);
 					actions.resetForm();
 				}}
-				// validationSchema={registerSchema}
+				validationSchema={SignInSchema}
 			>
 				<Form className={styles.formik}>
+					<ErrorMessage
+						name="username"
+						render={msg => (
+							<div className={styles.schema}>{error.message}</div>
+						)}
+					/>
 					{form.map(data => (
 						<div className={styles.field} key={data.id}>
 							<label>{data.value}: </label>
@@ -52,18 +55,18 @@ export default function Register() {
 								id={data.id}
 								placeholder={data.value}
 							/>
-							<ErrorMessage name={data.id} />
 						</div>
 					))}
 					<Button type="submit" color="blue">
-						{!isLoading ? "Register" : <Loader />}
+						{!isLoading ? "Sign In" : <Loader />}
 					</Button>
-
 					<Button color="blue">
-						<Link to="/login"> Already have an account? </Link>
+						<Link to="/register">Already have an account?</Link>
 					</Button>
 				</Form>
 			</Formik>
-		</div>
+		</>
 	);
-}
+};
+
+export default SignIn;

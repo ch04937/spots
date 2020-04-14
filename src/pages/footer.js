@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 //setting styles
-import "./pages.scss";
+// import "../../stl/pages.scss";
 const copyRight = () => {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
@@ -11,7 +11,6 @@ const copyRight = () => {
 				Twhere
 			</Link>
 			{new Date().getFullYear()}
-			{"."}
 		</Typography>
 	);
 };

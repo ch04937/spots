@@ -3,6 +3,42 @@
 	justify-content: $content;
 	flex-direction: $direction;
 }
+
+.formik {
+	@include flex(space-around, column);
+	width: 50%;
+	margin: auto;
+	.field {
+		@include flex(center, column);
+		margin: 0.5rem auto;
+		width: fit-content;
+		text-align: left;
+		input {
+			padding: 1rem 1rem;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+	}
+	a {
+		color: white;
+	}
+}
+.schema {
+	color: red;
+}
+
+.settings {
+	@include flex(center, column);
+	text-align: left;
+	span {
+		padding: 0.5rem;
+		margin: 2px 0;
+		&:hover {
+			background: lightblue;
+		}
+	}
+}
+
 .NavBar-links {
 	display: flex;
 	justify-content: space-around;
@@ -24,22 +60,8 @@
 	border: 3px solid red;
 	height: 600px;
 }
-.formik {
-	@include flex(space-around, column);
-	width: 50%;
-	margin: auto;
-	.field {
-		@include flex(flex-start, column);
-		text-align: left;
-		input {
-			padding: 3% 4%;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-		}
-	}
-}
 //landing page
-.landing-page {
+.landingPage {
 	@include flex(flex-start, column);
 }
 //footer

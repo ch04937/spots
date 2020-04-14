@@ -9,10 +9,7 @@ export const TwhereContext = createContext();
 
 export const TwhereState = props => {
 	const initialState = {
-		isLoading: false,
-		localSpotsError: null,
-		localSpots: [],
-		savedSpots: [],
+		isLoading: false
 	};
 	const localState = loadState("twhere");
 
@@ -33,7 +30,7 @@ export const TwhereState = props => {
 			);
 			dispatch({
 				type: LOCAL_SPOT_SUCCESS,
-				payload: spot.data.spot,
+				payload: spot.data.spot
 			});
 		} catch (error) {
 			console.log(error);
@@ -49,7 +46,7 @@ export const TwhereState = props => {
 				localSpotsError: state.localSpotsError,
 				savedSpots: state.savedSpots,
 				savedSpotsError: state.savedSpotsError,
-				getLocalSpots,
+				getLocalSpots
 			}}
 		>
 			{props.children}

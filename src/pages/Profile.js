@@ -3,31 +3,27 @@ import { AuthContext } from "../utils/context/auth/authState";
 
 import { Container, Image, Menu } from "semantic-ui-react";
 
+import styles from "../stylesheets/pages.module.scss";
+
+const profile = [
+	{
+		url: "",
+		account: "Account Settings ",
+		signOut: "Sign Out"
+	}
+];
+
 const Profile = () => {
-	const { userProfile, signOut } = useContext(AuthContext);
+	// const { userProfile, signOut } = useContext(AuthContext);
 	return (
-		<div style={{ display: "flex", flexDirection: "row" }}>
-			<Menu
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					width: "490px",
-					margin: "auto",
-				}}
-			>
-				<Container>
-					<Menu.Item as="a" header>
-						<Image size="mini" src="/logo.png" circular />
-						{userProfile.username}
-					</Menu.Item>
-					<Menu.Item as="a">
-						<p>Account Settings </p>
-					</Menu.Item>
-					<Menu.Item as="a">
-						<p onClick={signOut}>Sign Out </p>
-					</Menu.Item>
-				</Container>
-			</Menu>
+		<div className="menu">
+			{profile.map((data, idx) => (
+				<div className={styles.settings} key={idx}>
+					<span>Image</span>
+					<span>{data.account}</span>
+					<span>{data.signOut}</span>
+				</div>
+			))}
 		</div>
 	);
 };
